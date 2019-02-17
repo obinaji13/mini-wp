@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="1033634222491-4kl605f5epmi7412c9o51962e6n38c2p.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Mini Word</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="isLogin === false">
+        <login @change_page="changePage" @logged_in="logged_in" v-if="showPage === 'login'"> </login>
+        <register @change_page="changePage" v-if="showPage === 'register'"></register>
+      </div>
+
+      <div id="mainPage" v-if="isLogin === true">
+        <navbar @change_page="changePage" @signout="signOut"></navbar>
+
+        <div class="container-fluid mt-3">
+          <div class="row">
+            <sidebar @change_page="changePage" ></sidebar>
+
+            <div class="col-sm-12 col-md-10">
+              <div class="tab-content" id="v-pills-tabContent">
+                <my_article v-if="showPage === 'my_articles'" @edit_article="editArticle" @get_detail="getDetail"></my_article>
+                <reader v-else-if="showPage === 'reader'" @get_detail="getDetail"></reader>
+                <article_detail v-else-if="showPage === 'detail'" :article_id="detailArticleId"></article_detail>
+                <form_article v-else-if="showPage === 'form_article'" :edit_data="edit_data" @change_page="changePage"></form_article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="https://unpkg.com/@johmun/vue-tags-input/dist/vue-tags-input.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="/js/vueWysiwyg.js"></script>
+    <script src="/css/index.css"></script>
+    <script src="/components/login.js"></script>
+    <script src="/components/register.js"></script>
+    <script src="/components/navbar.js"></script>
+    <script src="/components/sidebar.js"></script>
+    <script src="/components/my_article.js"></script>
+    <script src="/components/form_article.js"></script>
+    <script src="/components/reader.js"></script>
+    <script src="/components/articleDetail.js"></script>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
