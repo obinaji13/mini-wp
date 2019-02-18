@@ -47,7 +47,7 @@ module.exports = {
     },
     getAll(req, res) {
         Article
-            .find({})
+            .find()
             .populate('author')
             .then(articles => {
                 res.status(200).json(articles)
@@ -115,6 +115,7 @@ module.exports = {
                 }
                 Article
                     .findByIdAndUpdate(req.params.articleId, newArticle, {new: true})
+                    .populate('author')
                     .then(article => {
                         res.status(200).json(article)
                     })

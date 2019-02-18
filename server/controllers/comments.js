@@ -39,6 +39,7 @@ module.exports = {
         }
         Comment
             .findByIdAndUpdate(req.params.commentId, newComment)
+            .populate('userId')
             .then(comment => {
                 res.status(200).json(comment)
             })

@@ -3,7 +3,7 @@ const { Tag } = require('../models')
 module.exports = {
     create(req, res) {
         Tag
-            .create({name: req.body.name})
+            .create({text: req.body.text})
             .then(tag => {
                 res.status(201).json(tag)
             })
