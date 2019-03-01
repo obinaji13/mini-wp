@@ -24,7 +24,7 @@ module.exports = {
                 if (req.file) {
                     newArticle.featuredImage = req.file.cloudStoragePublicUrl
                 }
-                Article
+               return Article
                     .create(newArticle)
                     .then(article => {
                         res.status(201).json(article)

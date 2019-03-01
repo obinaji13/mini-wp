@@ -1,4 +1,4 @@
-const url = `http://localhost:3000`
+const url = `https://mini-word.obinaji.online`
 
 function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
